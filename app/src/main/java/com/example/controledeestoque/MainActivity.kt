@@ -17,11 +17,14 @@ class MainActivity : AppCompatActivity() {
         val listaProdutos = findViewById<TextView>(R.id.listaProdutos)
 
         botaoAdicionar.setOnClickListener {
-            val produto = Produto(
-                nomeProduto.text.toString(),
-                quantidadeProduto.text.toString().toInt()
-            )
-            listaProdutos.append("${produto.nome} - ${produto.quantidade}\n")
+            val nome = nomeProduto.text.toString()
+            val qtd = quantidadeProduto.text.toString()
+            if (nome.isNotEmpty() && qtd.isNotEmpty()) {
+                val produto = Produto(nome, qtd.toInt())
+                listaProdutos.append("${produto.nome} - ${produto.quantidade}\n")
+                nomeProduto.text.clear()
+                quantidadeProduto.text.clear()
+            }
         }
     }
 }
